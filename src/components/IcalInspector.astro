@@ -1,0 +1,212 @@
+---
+import { INITIAL_SYNCED_BOOKINGS, ICAL_FEEDS_CONFIG } from '../data/sampleBookings';
+---
+
+<div class="rounded-2xl border border-luxury-border/80 bg-luxury-surface/80 p-6 sm:p-8 backdrop-blur shadow-xl">
+  <!-- Section Title -->
+  <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center border-b border-luxury-border/60 pb-5">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">Live 2-Way Sync Engine Active</span>
+      </div>
+      <h3 class="mt-1 font-serif text-2xl font-bold text-white">
+        Multi-Channel iCal Calendar Inspector
+      </h3>
+      <p class="text-xs text-slate-400 mt-1">
+        Simulator proteksi overbooking otomatis antara Aura Direct, Airbnb, dan Booking.com.
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="btn-export-ical"
+        class="inline-flex items-center gap-2 rounded-xl border border-luxury-gold/50 bg-luxury-card px-4 py-2.5 text-xs font-semibold text-luxury-gold transition hover:bg-luxury-gold/10 active:scale-95"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        <span>Export iCal (.ics)</span>
+      </button>
+
+      <button
+        type="button"
+        id="btn-trigger-sync"
+        class="inline-flex items-center gap-2 rounded-xl bg-luxury-card px-4 py-2.5 text-xs font-semibold text-slate-200 border border-luxury-border hover:border-slate-400 transition active:scale-95"
+      >
+        <svg class="h-4 w-4 animate-spin text-slate-400" id="sync-spinner" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+        <span id="sync-status-text">Simulasikan Sinkronisasi</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Channel Feeds Status Cards -->
+  <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    {ICAL_FEEDS_CONFIG.map((feed) => (
+      <div class="rounded-xl border border-luxury-border bg-luxury-card/60 p-4">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-white">{feed.platform}</span>
+          <span class="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] text-emerald-400 border border-emerald-500/20">
+            {feed.status}
+          </span>
+        </div>
+        <p class="mt-2 font-mono text-[11px] text-slate-400 truncate" title={feed.url}>
+          {feed.url}
+        </p>
+        <div class="mt-3 flex items-center justify-between text-[10px] text-slate-500 border-t border-luxury-border/40 pt-2">
+          <span>Terakhir disinkron:</span>
+          <span class="text-slate-300 feed-sync-time">{feed.lastSynced}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Calendar Reservation Blocks Table -->
+  <div class="mt-6 overflow-hidden rounded-xl border border-luxury-border bg-luxury-card/40">
+    <div class="p-4 border-b border-luxury-border/60 flex items-center justify-between">
+      <span class="text-xs font-semibold uppercase tracking-wider text-luxury-stone">
+        Jadwal Terblokir & Terverifikasi (Anti-Overbooking Matrix)
+      </span>
+      <span class="text-[11px] text-slate-400" id="active-blocks-count">3 Reservasi Terjadwal</span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-luxury-surface/80 text-[10px] uppercase tracking-wider text-slate-400">
+          <tr>
+            <th class="px-4 py-3">Channel / Sumber</th>
+            <th class="px-4 py-3">Tamu / ID Pemesanan</th>
+            <th class="px-4 py-3">Check-In</th>
+            <th class="px-4 py-3">Check-Out</th>
+            <th class="px-4 py-3">Durasi</th>
+            <th class="px-4 py-3 text-right">Status Kalender</th>
+          </tr>
+        </thead>
+        <tbody id="sync-table-body" class="divide-y divide-luxury-border/40 text-slate-300">
+          {INITIAL_SYNCED_BOOKINGS.map((item) => (
+            <tr class="hover:bg-luxury-surface/40 transition">
+              <td class="px-4 py-3.5 whitespace-nowrap">
+                <span class={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-medium text-[11px] ${item.colorBadge}`}>
+                  {item.channel}
+                </span>
+              </td>
+              <td class="px-4 py-3.5 font-medium text-white">{item.guestName}</td>
+              <td class="px-4 py-3.5 font-mono text-slate-300">{item.checkIn}</td>
+              <td class="px-4 py-3.5 font-mono text-slate-300">{item.checkOut}</td>
+              <td class="px-4 py-3.5">{item.nights} Malam</td>
+              <td class="px-4 py-3.5 text-right whitespace-nowrap">
+                <span class="rounded bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/30">
+                  Tanggal Diblokir
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="ical-toast" class="mt-4 hidden rounded-xl border border-luxury-gold/50 bg-luxury-gold/10 p-3 text-center text-xs text-luxury-gold">
+    Berhasil mendownload kalender <strong>aura-direct-calendar.ics</strong>. File siap di-import ke Airbnb & Booking.com kalender sync.
+  </div>
+</div>
+
+<script>
+  const btnExportIcal = document.getElementById('btn-export-ical');
+  const btnTriggerSync = document.getElementById('btn-trigger-sync');
+  const syncStatusText = document.getElementById('sync-status-text');
+  const syncTableBody = document.getElementById('sync-table-body');
+  const icalToast = document.getElementById('ical-toast');
+  const activeBlocksCount = document.getElementById('active-blocks-count');
+
+  // Trigger export iCal generator
+  btnExportIcal?.addEventListener('click', () => {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Veridion Studio//Aura Direct Villa Engine//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'X-WR-CALNAME:The Maya Sanctuary Uluwatu - Aura Direct Feed',
+      'BEGIN:VEVENT',
+      'UID:DIR-009182@veridionstudio.com',
+      'DTSTAMP:20261008T060000Z',
+      'DTSTART;VALUE=DATE:20261025',
+      'DTEND;VALUE=DATE:20261028',
+      'SUMMARY:Reserved (Aura Direct VIP - Marcus Sterling)',
+      'DESCRIPTION:Direct Luxury Villa Booking without OTA commission',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'aura-direct-calendar.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    if (icalToast) {
+      icalToast.classList.remove('hidden');
+      setTimeout(() => {
+        icalToast.classList.add('hidden');
+      }, 5000);
+    }
+  });
+
+  // Manual Trigger Sync Simulation
+  btnTriggerSync?.addEventListener('click', () => {
+    if (syncStatusText) syncStatusText.textContent = 'Menyinkronkan feed OTA...';
+    
+    setTimeout(() => {
+      if (syncStatusText) syncStatusText.textContent = 'Sinkronisasi Selesai ✓';
+      const timeLabels = document.querySelectorAll('.feed-sync-time');
+      timeLabels.forEach((el) => {
+        el.textContent = 'Baru saja';
+      });
+      setTimeout(() => {
+        if (syncStatusText) syncStatusText.textContent = 'Simulasikan Sinkronisasi';
+      }, 3000);
+    }, 1200);
+  });
+
+  // Listen for Booking confirmed from BookingEngine
+  window.addEventListener('booking-confirmed', (e: any) => {
+    const data = e.detail;
+    if (!syncTableBody) return;
+
+    const newRow = document.createElement('tr');
+    newRow.className = 'bg-amber-500/10 border-b border-luxury-border/60 animate-fade-in';
+    newRow.innerHTML = `
+      <td class="px-4 py-3.5 whitespace-nowrap">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/20 px-2.5 py-0.5 font-medium text-[11px] text-amber-300">
+          Direct (Aura New)
+        </span>
+      </td>
+      <td class="px-4 py-3.5 font-medium text-white">${data.code} (Guest Verified)</td>
+      <td class="px-4 py-3.5 font-mono text-slate-300">${data.checkIn}</td>
+      <td class="px-4 py-3.5 font-mono text-slate-300">${data.checkOut}</td>
+      <td class="px-4 py-3.5">${data.nights} Malam</td>
+      <td class="px-4 py-3.5 text-right whitespace-nowrap">
+        <span class="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300 border border-emerald-500/40">
+          Baru Diblokir Otomatis
+        </span>
+      </td>
+    `;
+    syncTableBody.prepend(newRow);
+
+    if (activeBlocksCount) {
+      activeBlocksCount.textContent = '4 Reservasi Terjadwal (Feed Live Updated)';
+    }
+  });
+</script>

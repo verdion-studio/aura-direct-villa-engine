@@ -1,0 +1,394 @@
+---
+import { VILLA_DATA } from '../data/villaData';
+---
+
+<div id="booking-widget" class="sticky top-24 rounded-2xl border border-luxury-gold/40 bg-luxury-surface/95 p-6 shadow-2xl backdrop-blur-md">
+  <!-- Zero OTA Fee Banner -->
+  <div class="mb-5 flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-3 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 font-bold">✓</span>
+      <div>
+        <p class="font-semibold text-emerald-300">Direct Booking Guarantee</p>
+        <p class="text-[11px] text-emerald-400/80">Hemat ~20% komisi OTA & dapatkan free upgrade</p>
+      </div>
+    </div>
+    <span class="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] text-emerald-300 uppercase">Best Rate</span>
+  </div>
+
+  <!-- Pricing Header -->
+  <div class="mb-6 border-b border-luxury-border/60 pb-5">
+    <div class="flex items-baseline justify-between">
+      <div>
+        <span class="text-xs text-luxury-stone uppercase tracking-wider">Mulai dari</span>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-serif text-3xl font-bold text-luxury-gold" id="display-price-per-night">
+            Rp {(VILLA_DATA.pricing.baseRateWeekday).toLocaleString('id-ID')}
+          </span>
+          <span class="text-xs text-slate-400">/ malam</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="rounded bg-luxury-card px-2.5 py-1 text-[11px] text-luxury-sand border border-luxury-border">
+          Weekend: Rp {(VILLA_DATA.pricing.weekendRate).toLocaleString('id-ID')}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Date Picker Form -->
+  <div class="space-y-4">
+    <div class="grid grid-cols-2 gap-2">
+      <div class="rounded-xl border border-luxury-border bg-luxury-card p-3 focus-within:border-luxury-gold transition">
+        <label for="check-in-date" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+          Check-in
+        </label>
+        <input
+          type="date"
+          id="check-in-date"
+          class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+        />
+      </div>
+      <div class="rounded-xl border border-luxury-border bg-luxury-card p-3 focus-within:border-luxury-gold transition">
+        <label for="check-out-date" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+          Check-out
+        </label>
+        <input
+          type="date"
+          id="check-out-date"
+          class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+        />
+      </div>
+    </div>
+
+    <!-- Guest Count Selection -->
+    <div class="rounded-xl border border-luxury-border bg-luxury-card p-3">
+      <label for="guest-count" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+        Jumlah Tamu
+      </label>
+      <select
+        id="guest-count"
+        class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+      >
+        <option value="1" class="bg-luxury-card">1 Tamu</option>
+        <option value="2" class="bg-luxury-card">2 Tamu</option>
+        <option value="4" class="bg-luxury-card">4 Tamu</option>
+        <option value="6" selected class="bg-luxury-card">6 Tamu (Kapasitas Maksimal)</option>
+      </select>
+    </div>
+
+    <!-- Dynamic Price Breakdown (Auto Calculated) -->
+    <div id="price-breakdown-card" class="rounded-xl border border-luxury-border/60 bg-luxury-card/60 p-4 text-xs space-y-2.5">
+      <div class="flex justify-between text-slate-300">
+        <span id="breakdown-nights-label">Sewa Villa (2 Malam)</span>
+        <span class="font-mono font-medium text-white" id="breakdown-stay-cost">Rp 13.000.000</span>
+      </div>
+      <div class="flex justify-between text-slate-400">
+        <span>Cleaning & Housekeeping Fee</span>
+        <span class="font-mono text-slate-300" id="breakdown-cleaning-fee">Rp 750.000</span>
+      </div>
+      <div class="flex justify-between text-slate-400">
+        <span>Pajak Daerah PB1 (10% PHR)</span>
+        <span class="font-mono text-slate-300" id="breakdown-tax-amount">Rp 1.375.000</span>
+      </div>
+      <div class="border-t border-luxury-border/60 pt-2 flex justify-between items-baseline">
+        <span class="font-semibold text-white">Total Investasi Menginap</span>
+        <span class="font-serif text-lg font-bold text-luxury-gold" id="breakdown-total-cost">Rp 15.125.000</span>
+      </div>
+    </div>
+
+    <!-- Payment Tier Choice -->
+    <div>
+      <label class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone mb-1.5">
+        Opsi Pembayaran (Zero Commission)
+      </label>
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          id="btn-tier-dp"
+          class="tier-btn active flex flex-col items-center justify-center rounded-xl border border-luxury-gold bg-luxury-gold/10 p-3 text-center transition"
+        >
+          <span class="text-xs font-bold text-luxury-gold">DP 50%</span>
+          <span class="text-[10px] text-slate-300 mt-0.5" id="tier-dp-amount">Rp 7.562.500</span>
+        </button>
+        <button
+          type="button"
+          id="btn-tier-full"
+          class="tier-btn flex flex-col items-center justify-center rounded-xl border border-luxury-border bg-luxury-card p-3 text-center transition"
+        >
+          <span class="text-xs font-bold text-slate-200">Pelunasan 100%</span>
+          <span class="text-[10px] text-slate-400 mt-0.5" id="tier-full-amount">Rp 15.125.000</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Booking CTA Button -->
+    <button
+      type="button"
+      id="btn-open-payment"
+      class="w-full rounded-xl bg-gradient-to-r from-luxury-gold to-amber-500 py-3.5 text-sm font-bold text-luxury-dark shadow-lg shadow-amber-900/30 transition hover:brightness-110 active:scale-[0.98]"
+    >
+      Lanjutkan Pembayaran Instan
+    </button>
+  </div>
+</div>
+
+<!-- ================= MODAL SIMULASI PEMBAYARAN QRIS ================= -->
+<div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+  <div class="relative w-full max-w-md rounded-2xl border border-luxury-gold/50 bg-luxury-card p-6 shadow-2xl">
+    <!-- Close Button -->
+    <button
+      id="btn-close-modal"
+      class="absolute top-4 right-4 rounded-lg p-1.5 text-slate-400 hover:bg-luxury-surface hover:text-white"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Modal Header -->
+    <div class="text-center">
+      <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-luxury-gold/20 text-luxury-gold mb-2">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+        </svg>
+      </div>
+      <h3 class="font-serif text-xl font-bold text-white">Simulasi Pembayaran QRIS</h3>
+      <p class="text-xs text-luxury-stone mt-0.5">National Standard QRIS — Instant Verification</p>
+    </div>
+
+    <!-- QR Code Card -->
+    <div class="my-4 rounded-xl border border-luxury-border bg-white p-4 text-center">
+      <!-- Simulated SVG QR Code -->
+      <div class="mx-auto flex h-48 w-48 items-center justify-center bg-white p-2">
+        <svg class="h-full w-full" viewBox="0 0 100 100">
+          <rect width="100" height="100" fill="white"/>
+          <!-- Position Marks -->
+          <rect x="5" y="5" width="25" height="25" fill="#0B0F12"/>
+          <rect x="9" y="9" width="17" height="17" fill="white"/>
+          <rect x="13" y="13" width="9" height="9" fill="#0B0F12"/>
+
+          <rect x="70" y="5" width="25" height="25" fill="#0B0F12"/>
+          <rect x="74" y="9" width="17" height="17" fill="white"/>
+          <rect x="78" y="13" width="9" height="9" fill="#0B0F12"/>
+
+          <rect x="5" y="70" width="25" height="25" fill="#0B0F12"/>
+          <rect x="9" y="74" width="17" height="17" fill="white"/>
+          <rect x="13" y="78" width="9" height="9" fill="#0B0F12"/>
+
+          <!-- Dummy Patterns -->
+          <rect x="36" y="8" width="8" height="8" fill="#0B0F12"/>
+          <rect x="48" y="8" width="16" height="8" fill="#0B0F12"/>
+          <rect x="36" y="24" width="28" height="6" fill="#0B0F12"/>
+          <rect x="10" y="38" width="80" height="8" fill="#0B0F12"/>
+          <rect x="18" y="52" width="20" height="10" fill="#0B0F12"/>
+          <rect x="44" y="48" width="14" height="18" fill="#0B0F12"/>
+          <rect x="64" y="50" width="24" height="12" fill="#0B0F12"/>
+          <rect x="36" y="72" width="18" height="18" fill="#0B0F12"/>
+          <rect x="62" y="70" width="30" height="8" fill="#0B0F12"/>
+          <rect x="75" y="82" width="16" height="10" fill="#0B0F12"/>
+          
+          <!-- Center Logo Badge -->
+          <circle cx="50" cy="50" r="10" fill="#D4AF37"/>
+          <text x="50" y="54" font-size="10" font-family="serif" font-weight="bold" fill="#0B0F12" text-anchor="middle">A</text>
+        </svg>
+      </div>
+      <div class="mt-2 text-center">
+        <p class="text-[11px] font-bold text-slate-800 uppercase tracking-wider">Merchant: The Maya Sanctuary Uluwatu</p>
+        <p class="text-[10px] text-slate-500">NMID: ID1029384758203 | Acquirer: Direct Gateway</p>
+      </div>
+    </div>
+
+    <!-- Amount Due Info -->
+    <div class="mb-5 rounded-xl bg-luxury-surface p-3 text-center border border-luxury-border">
+      <span class="text-xs text-slate-400">Total Tagihan Harus Dibayar:</span>
+      <p class="font-serif text-2xl font-bold text-luxury-gold mt-0.5" id="modal-payment-amount">
+        Rp 7.562.500
+      </p>
+      <span class="inline-block mt-1 rounded bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-300" id="modal-payment-type-badge">
+        Deposit 50% (Sisa Pelunasan saat Check-in)
+      </span>
+    </div>
+
+    <!-- Interactive Simulation Trigger -->
+    <button
+      type="button"
+      id="btn-simulate-success"
+      class="w-full rounded-xl bg-emerald-500 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-950/40 transition hover:bg-emerald-600 active:scale-[0.98] flex items-center justify-center gap-2"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+      </svg>
+      <span>Simulasi Bayar Berhasil (Klik Disini)</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Dynamic Pricing & Booking Logic
+  const weekdayRate = 6500000;
+  const weekendRate = 7800000;
+  const cleaningFee = 750000;
+  const taxRate = 0.10;
+
+  // Set default dates: Besok & lusa
+  const today = new Date();
+  const defaultCheckIn = new Date(today);
+  defaultCheckIn.setDate(today.getDate() + 2);
+  const defaultCheckOut = new Date(today);
+  defaultCheckOut.setDate(today.getDate() + 4);
+
+  const formatDateInput = (date: Date) => date.toISOString().split('T')[0];
+
+  const checkInInput = document.getElementById('check-in-date') as HTMLInputElement;
+  const checkOutInput = document.getElementById('check-out-date') as HTMLInputElement;
+  const guestSelect = document.getElementById('guest-count') as HTMLSelectElement;
+
+  if (checkInInput && checkOutInput) {
+    checkInInput.min = formatDateInput(new Date());
+    checkInInput.value = formatDateInput(defaultCheckIn);
+    
+    checkOutInput.min = formatDateInput(defaultCheckIn);
+    checkOutInput.value = formatDateInput(defaultCheckOut);
+  }
+
+  let selectedTier: 'dp' | 'full' = 'dp';
+
+  const btnTierDp = document.getElementById('btn-tier-dp');
+  const btnTierFull = document.getElementById('btn-tier-full');
+
+  const nightsLabel = document.getElementById('breakdown-nights-label');
+  const stayCostEl = document.getElementById('breakdown-stay-cost');
+  const cleaningFeeEl = document.getElementById('breakdown-cleaning-fee');
+  const taxAmountEl = document.getElementById('breakdown-tax-amount');
+  const totalCostEl = document.getElementById('breakdown-total-cost');
+  const tierDpAmountEl = document.getElementById('tier-dp-amount');
+  const tierFullAmountEl = document.getElementById('tier-full-amount');
+
+  const modalPaymentAmount = document.getElementById('modal-payment-amount');
+  const modalPaymentTypeBadge = document.getElementById('modal-payment-type-badge');
+
+  function calculateCosts() {
+    const start = new Date(checkInInput.value);
+    const end = new Date(checkOutInput.value);
+    
+    let nights = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+    if (nights < 1 || isNaN(nights)) nights = 1;
+
+    let baseRent = 0;
+    const curDate = new Date(start);
+    for (let i = 0; i < nights; i++) {
+      const day = curDate.getDay();
+      // Friday (5) & Saturday (6) count as weekend
+      if (day === 5 || day === 6) {
+        baseRent += weekendRate;
+      } else {
+        baseRent += weekdayRate;
+      }
+      curDate.setDate(curDate.getDate() + 1);
+    }
+
+    const subtotal = baseRent + cleaningFee;
+    const tax = Math.round(subtotal * taxRate);
+    const total = subtotal + tax;
+    const dp = Math.round(total * 0.5);
+
+    if (nightsLabel) nightsLabel.textContent = `Sewa Villa (${nights} Malam)`;
+    if (stayCostEl) stayCostEl.textContent = `Rp ${baseRent.toLocaleString('id-ID')}`;
+    if (cleaningFeeEl) cleaningFeeEl.textContent = `Rp ${cleaningFee.toLocaleString('id-ID')}`;
+    if (taxAmountEl) taxAmountEl.textContent = `Rp ${tax.toLocaleString('id-ID')}`;
+    if (totalCostEl) totalCostEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    if (tierDpAmountEl) tierDpAmountEl.textContent = `Rp ${dp.toLocaleString('id-ID')}`;
+    if (tierFullAmountEl) tierFullAmountEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+
+    // Update modal amounts
+    const amountToPay = selectedTier === 'dp' ? dp : total;
+    if (modalPaymentAmount) {
+      modalPaymentAmount.textContent = `Rp ${amountToPay.toLocaleString('id-ID')}`;
+    }
+    if (modalPaymentTypeBadge) {
+      modalPaymentTypeBadge.textContent = selectedTier === 'dp' 
+        ? 'Deposit 50% (Sisa Pelunasan saat Check-in)'
+        : 'Pelunasan Penuh 100% (Bebas Biaya di Lokasi)';
+    }
+
+    return { nights, baseRent, cleaningFee, tax, total, dp, amountToPay };
+  }
+
+  // Event Listeners for Date changes
+  checkInInput?.addEventListener('change', () => {
+    const nextDay = new Date(checkInInput.value);
+    nextDay.setDate(nextDay.getDate() + 1);
+    checkOutInput.min = formatDateInput(nextDay);
+    if (new Date(checkOutInput.value) <= new Date(checkInInput.value)) {
+      checkOutInput.value = formatDateInput(nextDay);
+    }
+    calculateCosts();
+  });
+
+  checkOutInput?.addEventListener('change', () => {
+    calculateCosts();
+  });
+
+  // Toggle Tiers
+  btnTierDp?.addEventListener('click', () => {
+    selectedTier = 'dp';
+    btnTierDp.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
+    btnTierDp.classList.remove('border-luxury-border', 'bg-luxury-card');
+    btnTierFull?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
+    btnTierFull?.classList.add('border-luxury-border', 'bg-luxury-card');
+    calculateCosts();
+  });
+
+  btnTierFull?.addEventListener('click', () => {
+    selectedTier = 'full';
+    btnTierFull.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
+    btnTierFull.classList.remove('border-luxury-border', 'bg-luxury-card');
+    btnTierDp?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
+    btnTierDp?.classList.add('border-luxury-border', 'bg-luxury-card');
+    calculateCosts();
+  });
+
+  // Modal Controls
+  const paymentModal = document.getElementById('payment-modal');
+  const btnOpenPayment = document.getElementById('btn-open-payment');
+  const btnCloseModal = document.getElementById('btn-close-modal');
+  const btnSimulateSuccess = document.getElementById('btn-simulate-success');
+
+  btnOpenPayment?.addEventListener('click', () => {
+    calculateCosts();
+    paymentModal?.classList.remove('hidden');
+    paymentModal?.classList.add('flex');
+  });
+
+  btnCloseModal?.addEventListener('click', () => {
+    paymentModal?.classList.add('hidden');
+    paymentModal?.classList.remove('flex');
+  });
+
+  btnSimulateSuccess?.addEventListener('click', () => {
+    paymentModal?.classList.add('hidden');
+    paymentModal?.classList.remove('flex');
+
+    const details = calculateCosts();
+    const bookingCode = 'AUR-' + Math.floor(100000 + Math.random() * 900000);
+
+    // Dispatch global event untuk direspon oleh WhatsApp Concierge & Calendar Inspector
+    const event = new CustomEvent('booking-confirmed', {
+      detail: {
+        code: bookingCode,
+        checkIn: checkInInput.value,
+        checkOut: checkOutInput.value,
+        nights: details.nights,
+        guests: guestSelect ? guestSelect.value : 6,
+        total: details.total,
+        amountPaid: details.amountToPay,
+        paymentType: selectedTier === 'dp' ? 'DP 50%' : 'Lunas 100%',
+        timestamp: new Date().toLocaleTimeString('id-ID'),
+      }
+    });
+    window.dispatchEvent(event);
+  });
+
+  // Initial Run
+  calculateCosts();
+</script>

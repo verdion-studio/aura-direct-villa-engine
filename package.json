@@ -1,0 +1,21 @@
+{
+  "name": "aura-direct-villa-engine",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Luxury Villa Direct Booking Engine & Multi-Channel iCal Sync Simulator by Veridion Studio",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^4.16.18",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

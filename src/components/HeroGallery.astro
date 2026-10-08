@@ -1,0 +1,79 @@
+---
+import { VILLA_DATA } from '../data/villaData';
+---
+
+<section class="relative pt-6 pb-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Header Titles -->
+    <div class="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-luxury-gold">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-luxury-gold"></span>
+          <span>Verified Luxury Sanctuary</span>
+          <span>•</span>
+          <span class="text-luxury-stone">{VILLA_DATA.location}</span>
+        </div>
+        <h1 class="mt-2 font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          {VILLA_DATA.name}
+        </h1>
+        <p class="mt-2 text-sm text-slate-300 sm:text-base">
+          {VILLA_DATA.tagline}
+        </p>
+      </div>
+
+      <!-- Quick Metrics Badges -->
+      <div class="flex flex-wrap gap-2 text-xs">
+        <span class="rounded-md border border-luxury-border bg-luxury-card px-3 py-1.5 text-slate-300">
+          <strong class="text-white">{VILLA_DATA.capacity.bedrooms}</strong> Bedrooms
+        </span>
+        <span class="rounded-md border border-luxury-border bg-luxury-card px-3 py-1.5 text-slate-300">
+          <strong class="text-white">{VILLA_DATA.capacity.guests}</strong> Max Guests
+        </span>
+        <span class="rounded-md border border-luxury-border bg-luxury-card px-3 py-1.5 text-slate-300">
+          <strong class="text-white">{VILLA_DATA.capacity.bathrooms}</strong> Baths
+        </span>
+        <span class="rounded-md border border-luxury-border bg-luxury-card px-3 py-1.5 text-slate-300">
+          <strong class="text-white">{VILLA_DATA.capacity.sqm}</strong> m² Private Estate
+        </span>
+      </div>
+    </div>
+
+    <!-- Editorial Image Grid -->
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-4 md:grid-rows-2 md:h-[500px]">
+      <!-- Main Featured Image -->
+      <div class="group relative overflow-hidden rounded-2xl md:col-span-2 md:row-span-2 shadow-2xl">
+        <img
+          src={VILLA_DATA.gallery[0].url}
+          alt={VILLA_DATA.gallery[0].caption}
+          class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <span class="rounded bg-black/60 px-2.5 py-1 text-xs font-medium text-luxury-gold backdrop-blur-md">
+            Direct Exclusive View
+          </span>
+          <p class="mt-1 text-sm font-semibold text-white drop-shadow-md">
+            {VILLA_DATA.gallery[0].caption}
+          </p>
+        </div>
+      </div>
+
+      <!-- 4 Supplementary Images -->
+      {VILLA_DATA.gallery.slice(1, 5).map((img, idx) => (
+        <div class="group relative h-48 md:h-full overflow-hidden rounded-2xl shadow-lg">
+          <img
+            src={img.url}
+            alt={img.caption}
+            class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          <div class="absolute bottom-2 left-3 right-3 text-xs font-medium text-white drop-shadow">
+            {img.caption}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
