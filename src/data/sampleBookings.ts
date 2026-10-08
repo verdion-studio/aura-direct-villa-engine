@@ -70,3 +70,4 @@ export const ICAL_FEEDS_CONFIG = [
     platform: "Direct Engine",
   },
 ];
+

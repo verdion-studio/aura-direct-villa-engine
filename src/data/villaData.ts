@@ -109,3 +109,4 @@ export const VILLA_DATA: VillaDetails = {
     },
   ],
 };
+
