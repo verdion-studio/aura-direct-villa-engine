@@ -2,35 +2,35 @@
 import { VILLA_DATA } from '../data/villaData';
 ---
 
-<div id="booking-widget" class="sticky top-20 rounded-2xl border border-luxury-lightBorder bg-white/95 p-6 shadow-xl backdrop-blur transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface/95 dark:shadow-2xl">
+<div id="booking-widget" class="rounded-2xl border border-luxury-lightBorder bg-white/95 p-5 sm:p-6 shadow-xl backdrop-blur transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface/95 dark:shadow-2xl lg:sticky lg:top-20">
   <!-- Zero OTA Fee Banner -->
   <div class="mb-5 flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-50/70 p-3 text-xs transition-colors dark:border-emerald-500/30 dark:bg-emerald-950/40">
     <div class="flex items-center gap-2.5">
-      <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600/15 text-emerald-700 font-semibold text-[11px] dark:bg-emerald-500/20 dark:text-emerald-400">✓</span>
+      <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600/15 text-emerald-700 font-semibold text-[11px] dark:bg-emerald-500/20 dark:text-emerald-400">✓</span>
       <div>
         <p class="font-medium text-emerald-900 dark:text-emerald-300">Direct Booking Guarantee</p>
         <p class="text-[11px] text-emerald-700/80 dark:text-emerald-400/80">Bebas komisi OTA & complimentary airport VIP transfer</p>
       </div>
     </div>
-    <span class="rounded bg-emerald-100 px-2 py-0.5 font-mono text-[9px] font-semibold text-emerald-800 uppercase dark:bg-emerald-500/20 dark:text-emerald-300">
+    <span class="shrink-0 rounded bg-emerald-100 px-2 py-0.5 font-mono text-[9px] font-semibold text-emerald-800 uppercase dark:bg-emerald-500/20 dark:text-emerald-300">
       Best Rate
     </span>
   </div>
 
   <!-- Pricing Header -->
   <div class="mb-5 border-b border-luxury-lightBorder/80 pb-5 transition-colors dark:border-luxury-darkBorder/60">
-    <div class="flex items-baseline justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
       <div>
         <span class="text-[10px] font-medium uppercase tracking-widestLuxury text-slate-400 dark:text-luxury-muted">Mulai dari</span>
         <div class="flex items-baseline gap-1.5 mt-0.5">
-          <span class="font-serif text-3xl font-medium text-luxury-gold" id="display-price-per-night">
+          <span class="font-serif text-2xl sm:text-3xl font-medium text-luxury-gold" id="display-price-per-night">
             Rp {(VILLA_DATA.pricing.baseRateWeekday).toLocaleString('id-ID')}
           </span>
           <span class="text-xs text-slate-500 dark:text-slate-400 font-light">/ malam</span>
         </div>
       </div>
-      <div class="text-right">
-        <span class="rounded-lg bg-luxury-lightCard px-2.5 py-1 text-[11px] font-normal text-slate-600 border border-luxury-lightBorder transition-colors dark:bg-luxury-darkCard dark:text-luxury-sand dark:border-luxury-darkBorder">
+      <div class="sm:text-right">
+        <span class="inline-block rounded-lg bg-luxury-lightCard px-2.5 py-1 text-[10px] sm:text-[11px] font-normal text-slate-600 border border-luxury-lightBorder transition-colors dark:bg-luxury-darkCard dark:text-luxury-sand dark:border-luxury-darkBorder">
           Weekend: Rp {(VILLA_DATA.pricing.weekendRate).toLocaleString('id-ID')}
         </span>
       </div>
@@ -39,9 +39,9 @@ import { VILLA_DATA } from '../data/villaData';
 
   <!-- Interactive Date Picker Form -->
   <div class="space-y-4">
-    <div class="grid grid-cols-2 gap-2.5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
       <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition focus-within:border-luxury-gold dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
-        <label for="check-in-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
+        <label for="check-in-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-luxury-muted">
           Check-in
         </label>
         <input
@@ -51,7 +51,7 @@ import { VILLA_DATA } from '../data/villaData';
         />
       </div>
       <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition focus-within:border-luxury-gold dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
-        <label for="check-out-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
+        <label for="check-out-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-luxury-muted">
           Check-out
         </label>
         <input
@@ -64,7 +64,7 @@ import { VILLA_DATA } from '../data/villaData';
 
     <!-- Guest Count Selection -->
     <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
-      <label for="guest-count" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
+      <label for="guest-count" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-luxury-muted">
         Jumlah Tamu
       </label>
       <select
@@ -94,13 +94,13 @@ import { VILLA_DATA } from '../data/villaData';
       </div>
       <div class="border-t border-luxury-lightBorder pt-2.5 flex justify-between items-baseline dark:border-luxury-darkBorder/60">
         <span class="font-medium text-slate-900 dark:text-white">Total Investasi Menginap</span>
-        <span class="font-serif text-lg font-bold text-luxury-gold" id="breakdown-total-cost">Rp 15.125.000</span>
+        <span class="font-serif text-base sm:text-lg font-bold text-luxury-gold" id="breakdown-total-cost">Rp 15.125.000</span>
       </div>
     </div>
 
     <!-- Payment Tier Choice -->
     <div>
-      <label class="block text-[10px] font-semibold uppercase tracking-widestLuxury text-slate-400 dark:text-luxury-muted mb-2">
+      <label class="block text-[10px] font-semibold uppercase tracking-widestLuxury text-slate-500 dark:text-luxury-muted mb-2">
         Skema Pembayaran
       </label>
       <div class="grid grid-cols-2 gap-2">
@@ -118,7 +118,7 @@ import { VILLA_DATA } from '../data/villaData';
           class="tier-btn flex flex-col items-center justify-center rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 text-center transition dark:border-luxury-darkBorder dark:bg-luxury-darkCard"
         >
           <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Pelunasan 100%</span>
-          <span class="text-[10px] text-slate-400 mt-0.5 font-light" id="tier-full-amount">Rp 15.125.000</span>
+          <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 font-light" id="tier-full-amount">Rp 15.125.000</span>
         </button>
       </div>
     </div>
@@ -135,8 +135,8 @@ import { VILLA_DATA } from '../data/villaData';
 </div>
 
 <!-- ================= MODAL SIMULASI PEMBAYARAN QRIS ================= -->
-<div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-  <div class="relative w-full max-w-md rounded-2xl border border-luxury-lightBorder bg-white p-6 shadow-2xl transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface">
+<div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm overflow-y-auto">
+  <div class="relative w-full max-w-md my-auto rounded-2xl border border-luxury-lightBorder bg-white p-5 sm:p-6 shadow-2xl transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface">
     <!-- Close Button -->
     <button
       id="btn-close-modal"
@@ -155,12 +155,12 @@ import { VILLA_DATA } from '../data/villaData';
         </svg>
       </div>
       <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Simulasi Pembayaran QRIS</h3>
-      <p class="text-[11px] text-slate-400 dark:text-luxury-muted mt-0.5">National Standard QRIS — Instant Settlement</p>
+      <p class="text-[11px] text-slate-500 dark:text-luxury-muted mt-0.5">National Standard QRIS — Instant Settlement</p>
     </div>
 
     <!-- QR Code Card -->
     <div class="my-4 rounded-xl border border-luxury-lightBorder bg-slate-50 p-4 text-center dark:border-luxury-darkBorder dark:bg-white">
-      <div class="mx-auto flex h-44 w-44 items-center justify-center bg-white p-2 rounded-lg">
+      <div class="mx-auto flex h-40 w-40 sm:h-44 sm:w-44 items-center justify-center bg-white p-2 rounded-lg">
         <svg class="h-full w-full" viewBox="0 0 100 100">
           <rect width="100" height="100" fill="white"/>
           <rect x="5" y="5" width="25" height="25" fill="#0A0D10"/>
@@ -309,6 +309,22 @@ import { VILLA_DATA } from '../data/villaData';
     return { nights, baseRent, cleaningFee, tax, total, dp, amountToPay };
   }
 
+  function applyTierStyles() {
+    if (selectedTier === 'dp') {
+      btnTierDp?.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
+      btnTierDp?.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+      
+      btnTierFull?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
+      btnTierFull?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+    } else {
+      btnTierFull?.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
+      btnTierFull?.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+      
+      btnTierDp?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
+      btnTierDp?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+    }
+  }
+
   checkInInput?.addEventListener('change', () => {
     const nextDay = new Date(checkInInput.value);
     nextDay.setDate(nextDay.getDate() + 1);
@@ -325,19 +341,13 @@ import { VILLA_DATA } from '../data/villaData';
 
   btnTierDp?.addEventListener('click', () => {
     selectedTier = 'dp';
-    btnTierDp.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierDp.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
-    btnTierFull?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierFull?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+    applyTierStyles();
     calculateCosts();
   });
 
   btnTierFull?.addEventListener('click', () => {
     selectedTier = 'full';
-    btnTierFull.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierFull.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
-    btnTierDp?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierDp?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
+    applyTierStyles();
     calculateCosts();
   });
 
@@ -380,5 +390,6 @@ import { VILLA_DATA } from '../data/villaData';
     window.dispatchEvent(event);
   });
 
+  applyTierStyles();
   calculateCosts();
 </script>
