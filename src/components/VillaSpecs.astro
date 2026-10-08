@@ -3,57 +3,62 @@ import { VILLA_DATA } from '../data/villaData';
 ---
 
 <div class="space-y-8">
-  <!-- Villa Story / About -->
-  <div class="rounded-2xl border border-luxury-border/60 bg-luxury-surface/50 p-6 sm:p-8 backdrop-blur">
-    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-luxury-gold">
+  <!-- Villa Narrative / Editorial Philosophy -->
+  <div class="rounded-2xl border border-luxury-lightBorder bg-white/60 p-6 sm:p-8 backdrop-blur transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface/50">
+    <div class="flex items-center gap-2 text-xs font-semibold tracking-widestLuxury uppercase text-luxury-gold">
       <span>Architectural Narrative</span>
     </div>
-    <h2 class="mt-2 font-serif text-2xl font-bold text-white sm:text-3xl">
+    <h2 class="mt-2 font-serif text-2xl font-normal text-slate-900 transition-colors dark:text-white sm:text-3xl">
       Eksklusivitas Tebing Uluwatu Tanpa Kompromi
     </h2>
-    <p class="mt-4 leading-relaxed text-slate-300">
-      Terletak di atas tebing kapur ikonik Uluwatu dengan ketinggian 90 meter di atas permukaan laut,
-      <strong>The Maya Sanctuary</strong> menawarkan privasi absolut yang dikurasi khusus untuk pelancong bernilai tinggi.
-      Didesain dengan memadukan arsitektur tropis kontemporer, marmer travertin, serta bukaan kaca masif dari lantai hingga langit-langit yang membingkai panorama Samudera Hindia secara spektakuler.
+    <p class="mt-4 leading-relaxed text-slate-600 transition-colors dark:text-slate-300 font-light text-sm sm:text-base">
+      Bertengger anggun di atas tebing kapur ikonik Uluwatu pada elevasi 90 meter di atas samudera lepas,
+      <strong class="font-medium text-slate-900 dark:text-white">The Maya Sanctuary</strong> dirancang untuk menghadirkan ketenangan murni.
+      Harmoni antara batu alam travertin, kayu ulin lokal, dan bukaan kaca masif membingkai pemandangan matahari terbenam tanpa distorsi.
     </p>
 
     <!-- Key Highlights Badges -->
     <div class="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
       {VILLA_DATA.highlights.map((item) => (
-        <div class="flex items-center gap-2.5 text-xs text-slate-200">
-          <svg class="h-4 w-4 shrink-0 text-luxury-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <span>{item}</span>
+        <div class="flex items-center gap-2.5 text-xs text-slate-700 dark:text-slate-300">
+          <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-luxury-gold/15 text-luxury-gold">
+            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <span class="font-normal">{item}</span>
         </div>
       ))}
     </div>
   </div>
 
-  <!-- Exclusive Amenities Grid -->
+  <!-- Curated Amenities Grid -->
   <div>
-    <h3 class="font-serif text-xl font-bold text-white mb-4">
-      Fasilitas & Layanan Eksklusif
-    </h3>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="font-serif text-xl font-medium text-slate-900 transition-colors dark:text-white">
+        Fasilitas & Layanan Eksklusif
+      </h3>
+      <span class="text-xs text-slate-400 dark:text-luxury-muted">Full Villa Inclusions</span>
+    </div>
+
+    <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
       {VILLA_DATA.features.map((feature) => (
-        <div class="group rounded-xl border border-luxury-border/50 bg-luxury-surface/30 p-5 transition hover:border-luxury-gold/50 hover:bg-luxury-surface/80">
-          <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-luxury-gold/30 bg-luxury-card text-luxury-gold transition group-hover:scale-105">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="group rounded-xl border border-luxury-lightBorder bg-white/50 p-5 transition hover:border-luxury-gold/60 hover:shadow-sm dark:border-luxury-darkBorder/70 dark:bg-luxury-darkCard/40 dark:hover:border-luxury-gold/40">
+          <div class="flex items-start gap-3.5">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-luxury-gold/30 bg-luxury-sand/30 text-luxury-gold transition group-hover:scale-105 dark:bg-luxury-darkCard">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
               </svg>
             </div>
             <div>
-              <h4 class="text-sm font-semibold text-white">{feature.title}</h4>
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">{feature.title}</h4>
+              <p class="mt-1.5 text-xs font-light leading-relaxed text-slate-500 dark:text-slate-400">
+                {feature.description}
+              </p>
             </div>
           </div>
-          <p class="mt-2.5 text-xs leading-relaxed text-slate-400">
-            {feature.description}
-          </p>
         </div>
       ))}
     </div>
   </div>
 </div>
-

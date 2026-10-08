@@ -2,33 +2,35 @@
 import { VILLA_DATA } from '../data/villaData';
 ---
 
-<div id="booking-widget" class="sticky top-24 rounded-2xl border border-luxury-gold/40 bg-luxury-surface/95 p-6 shadow-2xl backdrop-blur-md">
+<div id="booking-widget" class="sticky top-20 rounded-2xl border border-luxury-lightBorder bg-white/95 p-6 shadow-xl backdrop-blur transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface/95 dark:shadow-2xl">
   <!-- Zero OTA Fee Banner -->
-  <div class="mb-5 flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-3 text-xs">
-    <div class="flex items-center gap-2">
-      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 font-bold">✓</span>
+  <div class="mb-5 flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-50/70 p-3 text-xs transition-colors dark:border-emerald-500/30 dark:bg-emerald-950/40">
+    <div class="flex items-center gap-2.5">
+      <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600/15 text-emerald-700 font-semibold text-[11px] dark:bg-emerald-500/20 dark:text-emerald-400">✓</span>
       <div>
-        <p class="font-semibold text-emerald-300">Direct Booking Guarantee</p>
-        <p class="text-[11px] text-emerald-400/80">Hemat ~20% komisi OTA & dapatkan free upgrade</p>
+        <p class="font-medium text-emerald-900 dark:text-emerald-300">Direct Booking Guarantee</p>
+        <p class="text-[11px] text-emerald-700/80 dark:text-emerald-400/80">Bebas komisi OTA & complimentary airport VIP transfer</p>
       </div>
     </div>
-    <span class="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] text-emerald-300 uppercase">Best Rate</span>
+    <span class="rounded bg-emerald-100 px-2 py-0.5 font-mono text-[9px] font-semibold text-emerald-800 uppercase dark:bg-emerald-500/20 dark:text-emerald-300">
+      Best Rate
+    </span>
   </div>
 
   <!-- Pricing Header -->
-  <div class="mb-6 border-b border-luxury-border/60 pb-5">
+  <div class="mb-5 border-b border-luxury-lightBorder/80 pb-5 transition-colors dark:border-luxury-darkBorder/60">
     <div class="flex items-baseline justify-between">
       <div>
-        <span class="text-xs text-luxury-stone uppercase tracking-wider">Mulai dari</span>
-        <div class="flex items-baseline gap-1.5">
-          <span class="font-serif text-3xl font-bold text-luxury-gold" id="display-price-per-night">
+        <span class="text-[10px] font-medium uppercase tracking-widestLuxury text-slate-400 dark:text-luxury-muted">Mulai dari</span>
+        <div class="flex items-baseline gap-1.5 mt-0.5">
+          <span class="font-serif text-3xl font-medium text-luxury-gold" id="display-price-per-night">
             Rp {(VILLA_DATA.pricing.baseRateWeekday).toLocaleString('id-ID')}
           </span>
-          <span class="text-xs text-slate-400">/ malam</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-light">/ malam</span>
         </div>
       </div>
       <div class="text-right">
-        <span class="rounded bg-luxury-card px-2.5 py-1 text-[11px] text-luxury-sand border border-luxury-border">
+        <span class="rounded-lg bg-luxury-lightCard px-2.5 py-1 text-[11px] font-normal text-slate-600 border border-luxury-lightBorder transition-colors dark:bg-luxury-darkCard dark:text-luxury-sand dark:border-luxury-darkBorder">
           Weekend: Rp {(VILLA_DATA.pricing.weekendRate).toLocaleString('id-ID')}
         </span>
       </div>
@@ -37,69 +39,69 @@ import { VILLA_DATA } from '../data/villaData';
 
   <!-- Interactive Date Picker Form -->
   <div class="space-y-4">
-    <div class="grid grid-cols-2 gap-2">
-      <div class="rounded-xl border border-luxury-border bg-luxury-card p-3 focus-within:border-luxury-gold transition">
-        <label for="check-in-date" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+    <div class="grid grid-cols-2 gap-2.5">
+      <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition focus-within:border-luxury-gold dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
+        <label for="check-in-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
           Check-in
         </label>
         <input
           type="date"
           id="check-in-date"
-          class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+          class="mt-1 w-full bg-transparent text-xs sm:text-sm font-medium text-slate-900 focus:outline-none dark:text-white"
         />
       </div>
-      <div class="rounded-xl border border-luxury-border bg-luxury-card p-3 focus-within:border-luxury-gold transition">
-        <label for="check-out-date" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+      <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition focus-within:border-luxury-gold dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
+        <label for="check-out-date" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
           Check-out
         </label>
         <input
           type="date"
           id="check-out-date"
-          class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+          class="mt-1 w-full bg-transparent text-xs sm:text-sm font-medium text-slate-900 focus:outline-none dark:text-white"
         />
       </div>
     </div>
 
     <!-- Guest Count Selection -->
-    <div class="rounded-xl border border-luxury-border bg-luxury-card p-3">
-      <label for="guest-count" class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone">
+    <div class="rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 transition dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
+      <label for="guest-count" class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-luxury-muted">
         Jumlah Tamu
       </label>
       <select
         id="guest-count"
-        class="mt-1 w-full bg-transparent text-sm font-medium text-white focus:outline-none [color-scheme:dark]"
+        class="mt-1 w-full bg-transparent text-xs sm:text-sm font-medium text-slate-900 focus:outline-none dark:text-white"
       >
-        <option value="1" class="bg-luxury-card">1 Tamu</option>
-        <option value="2" class="bg-luxury-card">2 Tamu</option>
-        <option value="4" class="bg-luxury-card">4 Tamu</option>
-        <option value="6" selected class="bg-luxury-card">6 Tamu (Kapasitas Maksimal)</option>
+        <option value="1" class="text-slate-900 dark:bg-luxury-darkCard dark:text-white">1 Tamu</option>
+        <option value="2" class="text-slate-900 dark:bg-luxury-darkCard dark:text-white">2 Tamu</option>
+        <option value="4" class="text-slate-900 dark:bg-luxury-darkCard dark:text-white">4 Tamu</option>
+        <option value="6" selected class="text-slate-900 dark:bg-luxury-darkCard dark:text-white">6 Tamu (Kapasitas Maksimal Villa)</option>
       </select>
     </div>
 
     <!-- Dynamic Price Breakdown (Auto Calculated) -->
-    <div id="price-breakdown-card" class="rounded-xl border border-luxury-border/60 bg-luxury-card/60 p-4 text-xs space-y-2.5">
-      <div class="flex justify-between text-slate-300">
+    <div id="price-breakdown-card" class="rounded-xl border border-luxury-lightBorder/80 bg-luxury-lightCard/60 p-4 text-xs space-y-2.5 transition-colors dark:border-luxury-darkBorder/60 dark:bg-luxury-darkCard/50">
+      <div class="flex justify-between text-slate-600 dark:text-slate-300">
         <span id="breakdown-nights-label">Sewa Villa (2 Malam)</span>
-        <span class="font-mono font-medium text-white" id="breakdown-stay-cost">Rp 13.000.000</span>
+        <span class="font-mono font-medium text-slate-900 dark:text-white" id="breakdown-stay-cost">Rp 13.000.000</span>
       </div>
-      <div class="flex justify-between text-slate-400">
+      <div class="flex justify-between text-slate-500 dark:text-slate-400 font-light">
         <span>Cleaning & Housekeeping Fee</span>
-        <span class="font-mono text-slate-300" id="breakdown-cleaning-fee">Rp 750.000</span>
+        <span class="font-mono text-slate-700 dark:text-slate-300" id="breakdown-cleaning-fee">Rp 750.000</span>
       </div>
-      <div class="flex justify-between text-slate-400">
+      <div class="flex justify-between text-slate-500 dark:text-slate-400 font-light">
         <span>Pajak Daerah PB1 (10% PHR)</span>
-        <span class="font-mono text-slate-300" id="breakdown-tax-amount">Rp 1.375.000</span>
+        <span class="font-mono text-slate-700 dark:text-slate-300" id="breakdown-tax-amount">Rp 1.375.000</span>
       </div>
-      <div class="border-t border-luxury-border/60 pt-2 flex justify-between items-baseline">
-        <span class="font-semibold text-white">Total Investasi Menginap</span>
+      <div class="border-t border-luxury-lightBorder pt-2.5 flex justify-between items-baseline dark:border-luxury-darkBorder/60">
+        <span class="font-medium text-slate-900 dark:text-white">Total Investasi Menginap</span>
         <span class="font-serif text-lg font-bold text-luxury-gold" id="breakdown-total-cost">Rp 15.125.000</span>
       </div>
     </div>
 
     <!-- Payment Tier Choice -->
     <div>
-      <label class="block text-[10px] font-semibold uppercase tracking-wider text-luxury-stone mb-1.5">
-        Opsi Pembayaran (Zero Commission)
+      <label class="block text-[10px] font-semibold uppercase tracking-widestLuxury text-slate-400 dark:text-luxury-muted mb-2">
+        Skema Pembayaran
       </label>
       <div class="grid grid-cols-2 gap-2">
         <button
@@ -107,16 +109,16 @@ import { VILLA_DATA } from '../data/villaData';
           id="btn-tier-dp"
           class="tier-btn active flex flex-col items-center justify-center rounded-xl border border-luxury-gold bg-luxury-gold/10 p-3 text-center transition"
         >
-          <span class="text-xs font-bold text-luxury-gold">DP 50%</span>
-          <span class="text-[10px] text-slate-300 mt-0.5" id="tier-dp-amount">Rp 7.562.500</span>
+          <span class="text-xs font-semibold text-luxury-gold">DP 50%</span>
+          <span class="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5 font-light" id="tier-dp-amount">Rp 7.562.500</span>
         </button>
         <button
           type="button"
           id="btn-tier-full"
-          class="tier-btn flex flex-col items-center justify-center rounded-xl border border-luxury-border bg-luxury-card p-3 text-center transition"
+          class="tier-btn flex flex-col items-center justify-center rounded-xl border border-luxury-lightBorder bg-luxury-lightCard p-3 text-center transition dark:border-luxury-darkBorder dark:bg-luxury-darkCard"
         >
-          <span class="text-xs font-bold text-slate-200">Pelunasan 100%</span>
-          <span class="text-[10px] text-slate-400 mt-0.5" id="tier-full-amount">Rp 15.125.000</span>
+          <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Pelunasan 100%</span>
+          <span class="text-[10px] text-slate-400 mt-0.5 font-light" id="tier-full-amount">Rp 15.125.000</span>
         </button>
       </div>
     </div>
@@ -125,20 +127,20 @@ import { VILLA_DATA } from '../data/villaData';
     <button
       type="button"
       id="btn-open-payment"
-      class="w-full rounded-xl bg-gradient-to-r from-luxury-gold to-amber-500 py-3.5 text-sm font-bold text-luxury-dark shadow-lg shadow-amber-900/30 transition hover:brightness-110 active:scale-[0.98]"
+      class="w-full rounded-xl bg-gradient-to-r from-luxury-gold to-amber-600 py-3.5 text-xs font-semibold tracking-wider text-white uppercase shadow-md transition hover:brightness-105 active:scale-[0.98] dark:text-luxury-dark dark:font-bold"
     >
-      Lanjutkan Pembayaran Instan
+      Lanjutkan Reservasi & QRIS
     </button>
   </div>
 </div>
 
 <!-- ================= MODAL SIMULASI PEMBAYARAN QRIS ================= -->
-<div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-  <div class="relative w-full max-w-md rounded-2xl border border-luxury-gold/50 bg-luxury-card p-6 shadow-2xl">
+<div id="payment-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+  <div class="relative w-full max-w-md rounded-2xl border border-luxury-lightBorder bg-white p-6 shadow-2xl transition-colors dark:border-luxury-darkBorder dark:bg-luxury-darkSurface">
     <!-- Close Button -->
     <button
       id="btn-close-modal"
-      class="absolute top-4 right-4 rounded-lg p-1.5 text-slate-400 hover:bg-luxury-surface hover:text-white"
+      class="absolute top-4 right-4 rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-luxury-darkCard dark:hover:text-white"
     >
       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -147,64 +149,60 @@ import { VILLA_DATA } from '../data/villaData';
 
     <!-- Modal Header -->
     <div class="text-center">
-      <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-luxury-gold/20 text-luxury-gold mb-2">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-luxury-gold/15 text-luxury-gold mb-2">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
         </svg>
       </div>
-      <h3 class="font-serif text-xl font-bold text-white">Simulasi Pembayaran QRIS</h3>
-      <p class="text-xs text-luxury-stone mt-0.5">National Standard QRIS — Instant Verification</p>
+      <h3 class="font-serif text-xl font-normal text-slate-900 dark:text-white">Simulasi Pembayaran QRIS</h3>
+      <p class="text-[11px] text-slate-400 dark:text-luxury-muted mt-0.5">National Standard QRIS — Instant Settlement</p>
     </div>
 
     <!-- QR Code Card -->
-    <div class="my-4 rounded-xl border border-luxury-border bg-white p-4 text-center">
-      <!-- Simulated SVG QR Code -->
-      <div class="mx-auto flex h-48 w-48 items-center justify-center bg-white p-2">
+    <div class="my-4 rounded-xl border border-luxury-lightBorder bg-slate-50 p-4 text-center dark:border-luxury-darkBorder dark:bg-white">
+      <div class="mx-auto flex h-44 w-44 items-center justify-center bg-white p-2 rounded-lg">
         <svg class="h-full w-full" viewBox="0 0 100 100">
           <rect width="100" height="100" fill="white"/>
-          <!-- Position Marks -->
-          <rect x="5" y="5" width="25" height="25" fill="#0B0F12"/>
+          <rect x="5" y="5" width="25" height="25" fill="#0A0D10"/>
           <rect x="9" y="9" width="17" height="17" fill="white"/>
-          <rect x="13" y="13" width="9" height="9" fill="#0B0F12"/>
+          <rect x="13" y="13" width="9" height="9" fill="#0A0D10"/>
 
-          <rect x="70" y="5" width="25" height="25" fill="#0B0F12"/>
+          <rect x="70" y="5" width="25" height="25" fill="#0A0D10"/>
           <rect x="74" y="9" width="17" height="17" fill="white"/>
-          <rect x="78" y="13" width="9" height="9" fill="#0B0F12"/>
+          <rect x="78" y="13" width="9" height="9" fill="#0A0D10"/>
 
-          <rect x="5" y="70" width="25" height="25" fill="#0B0F12"/>
+          <rect x="5" y="70" width="25" height="25" fill="#0A0D10"/>
           <rect x="9" y="74" width="17" height="17" fill="white"/>
-          <rect x="13" y="78" width="9" height="9" fill="#0B0F12"/>
+          <rect x="13" y="78" width="9" height="9" fill="#0A0D10"/>
 
-          <!-- Dummy Patterns -->
-          <rect x="36" y="8" width="8" height="8" fill="#0B0F12"/>
-          <rect x="48" y="8" width="16" height="8" fill="#0B0F12"/>
-          <rect x="36" y="24" width="28" height="6" fill="#0B0F12"/>
-          <rect x="10" y="38" width="80" height="8" fill="#0B0F12"/>
-          <rect x="18" y="52" width="20" height="10" fill="#0B0F12"/>
-          <rect x="44" y="48" width="14" height="18" fill="#0B0F12"/>
-          <rect x="64" y="50" width="24" height="12" fill="#0B0F12"/>
-          <rect x="36" y="72" width="18" height="18" fill="#0B0F12"/>
-          <rect x="62" y="70" width="30" height="8" fill="#0B0F12"/>
-          <rect x="75" y="82" width="16" height="10" fill="#0B0F12"/>
+          <rect x="36" y="8" width="8" height="8" fill="#0A0D10"/>
+          <rect x="48" y="8" width="16" height="8" fill="#0A0D10"/>
+          <rect x="36" y="24" width="28" height="6" fill="#0A0D10"/>
+          <rect x="10" y="38" width="80" height="8" fill="#0A0D10"/>
+          <rect x="18" y="52" width="20" height="10" fill="#0A0D10"/>
+          <rect x="44" y="48" width="14" height="18" fill="#0A0D10"/>
+          <rect x="64" y="50" width="24" height="12" fill="#0A0D10"/>
+          <rect x="36" y="72" width="18" height="18" fill="#0A0D10"/>
+          <rect x="62" y="70" width="30" height="8" fill="#0A0D10"/>
+          <rect x="75" y="82" width="16" height="10" fill="#0A0D10"/>
           
-          <!-- Center Logo Badge -->
-          <circle cx="50" cy="50" r="10" fill="#D4AF37"/>
-          <text x="50" y="54" font-size="10" font-family="serif" font-weight="bold" fill="#0B0F12" text-anchor="middle">A</text>
+          <circle cx="50" cy="50" r="10" fill="#C5A059"/>
+          <text x="50" y="54" font-size="10" font-family="serif" font-weight="bold" fill="#FFFFFF" text-anchor="middle">A</text>
         </svg>
       </div>
       <div class="mt-2 text-center">
-        <p class="text-[11px] font-bold text-slate-800 uppercase tracking-wider">Merchant: The Maya Sanctuary Uluwatu</p>
-        <p class="text-[10px] text-slate-500">NMID: ID1029384758203 | Acquirer: Direct Gateway</p>
+        <p class="text-[10px] font-bold text-slate-800 uppercase tracking-wider">Merchant: The Maya Sanctuary Uluwatu</p>
+        <p class="text-[9px] text-slate-500">NMID: ID1029384758203 | Direct Villa Gateway</p>
       </div>
     </div>
 
     <!-- Amount Due Info -->
-    <div class="mb-5 rounded-xl bg-luxury-surface p-3 text-center border border-luxury-border">
-      <span class="text-xs text-slate-400">Total Tagihan Harus Dibayar:</span>
-      <p class="font-serif text-2xl font-bold text-luxury-gold mt-0.5" id="modal-payment-amount">
+    <div class="mb-5 rounded-xl bg-luxury-lightCard p-3 text-center border border-luxury-lightBorder dark:border-luxury-darkBorder dark:bg-luxury-darkCard">
+      <span class="text-xs text-slate-500 dark:text-slate-400">Total Nominal Pembayaran:</span>
+      <p class="font-serif text-2xl font-semibold text-luxury-gold mt-0.5" id="modal-payment-amount">
         Rp 7.562.500
       </p>
-      <span class="inline-block mt-1 rounded bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-300" id="modal-payment-type-badge">
+      <span class="inline-block mt-1 rounded bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-700 dark:text-amber-300" id="modal-payment-type-badge">
         Deposit 50% (Sisa Pelunasan saat Check-in)
       </span>
     </div>
@@ -213,7 +211,7 @@ import { VILLA_DATA } from '../data/villaData';
     <button
       type="button"
       id="btn-simulate-success"
-      class="w-full rounded-xl bg-emerald-500 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-950/40 transition hover:bg-emerald-600 active:scale-[0.98] flex items-center justify-center gap-2"
+      class="w-full rounded-xl bg-emerald-600 py-3 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition hover:bg-emerald-500 active:scale-[0.98] flex items-center justify-center gap-2"
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
@@ -230,7 +228,6 @@ import { VILLA_DATA } from '../data/villaData';
   const cleaningFee = 750000;
   const taxRate = 0.10;
 
-  // Set default dates: Besok & lusa
   const today = new Date();
   const defaultCheckIn = new Date(today);
   defaultCheckIn.setDate(today.getDate() + 2);
@@ -278,7 +275,6 @@ import { VILLA_DATA } from '../data/villaData';
     const curDate = new Date(start);
     for (let i = 0; i < nights; i++) {
       const day = curDate.getDay();
-      // Friday (5) & Saturday (6) count as weekend
       if (day === 5 || day === 6) {
         baseRent += weekendRate;
       } else {
@@ -300,7 +296,6 @@ import { VILLA_DATA } from '../data/villaData';
     if (tierDpAmountEl) tierDpAmountEl.textContent = `Rp ${dp.toLocaleString('id-ID')}`;
     if (tierFullAmountEl) tierFullAmountEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
 
-    // Update modal amounts
     const amountToPay = selectedTier === 'dp' ? dp : total;
     if (modalPaymentAmount) {
       modalPaymentAmount.textContent = `Rp ${amountToPay.toLocaleString('id-ID')}`;
@@ -314,7 +309,6 @@ import { VILLA_DATA } from '../data/villaData';
     return { nights, baseRent, cleaningFee, tax, total, dp, amountToPay };
   }
 
-  // Event Listeners for Date changes
   checkInInput?.addEventListener('change', () => {
     const nextDay = new Date(checkInInput.value);
     nextDay.setDate(nextDay.getDate() + 1);
@@ -329,26 +323,24 @@ import { VILLA_DATA } from '../data/villaData';
     calculateCosts();
   });
 
-  // Toggle Tiers
   btnTierDp?.addEventListener('click', () => {
     selectedTier = 'dp';
     btnTierDp.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierDp.classList.remove('border-luxury-border', 'bg-luxury-card');
+    btnTierDp.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
     btnTierFull?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierFull?.classList.add('border-luxury-border', 'bg-luxury-card');
+    btnTierFull?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
     calculateCosts();
   });
 
   btnTierFull?.addEventListener('click', () => {
     selectedTier = 'full';
     btnTierFull.classList.add('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierFull.classList.remove('border-luxury-border', 'bg-luxury-card');
+    btnTierFull.classList.remove('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
     btnTierDp?.classList.remove('border-luxury-gold', 'bg-luxury-gold/10');
-    btnTierDp?.classList.add('border-luxury-border', 'bg-luxury-card');
+    btnTierDp?.classList.add('border-luxury-lightBorder', 'dark:border-luxury-darkBorder', 'bg-luxury-lightCard', 'dark:bg-luxury-darkCard');
     calculateCosts();
   });
 
-  // Modal Controls
   const paymentModal = document.getElementById('payment-modal');
   const btnOpenPayment = document.getElementById('btn-open-payment');
   const btnCloseModal = document.getElementById('btn-close-modal');
@@ -372,7 +364,6 @@ import { VILLA_DATA } from '../data/villaData';
     const details = calculateCosts();
     const bookingCode = 'AUR-' + Math.floor(100000 + Math.random() * 900000);
 
-    // Dispatch global event untuk direspon oleh WhatsApp Concierge & Calendar Inspector
     const event = new CustomEvent('booking-confirmed', {
       detail: {
         code: bookingCode,
@@ -389,7 +380,5 @@ import { VILLA_DATA } from '../data/villaData';
     window.dispatchEvent(event);
   });
 
-  // Initial Run
   calculateCosts();
 </script>
-

@@ -1,42 +1,89 @@
 ---
 ---
 
-<header class="sticky top-0 z-50 border-b border-luxury-border/60 bg-luxury-dark/90 backdrop-blur-md">
+<header class="sticky top-0 z-50 border-b border-luxury-lightBorder/80 bg-white/80 backdrop-blur-md transition-colors duration-300 dark:border-luxury-darkBorder/70 dark:bg-luxury-dark/85">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-    <div class="flex items-center gap-3">
-      <div class="flex h-10 w-10 items-center justify-center rounded-lg border border-luxury-gold/40 bg-luxury-card text-luxury-gold shadow-lg shadow-black/40">
-        <span class="font-serif text-xl font-bold tracking-wider">A</span>
+    <!-- Brand Logo Minimalist Luxury -->
+    <a href="#" class="group flex items-center gap-3">
+      <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-luxury-gold/40 bg-luxury-sand/30 text-luxury-gold shadow-sm transition group-hover:border-luxury-gold dark:bg-luxury-darkCard">
+        <span class="font-serif text-lg font-bold">A</span>
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-serif text-lg font-bold tracking-tight text-white sm:text-xl">AURA DIRECT</span>
-          <span class="rounded bg-luxury-gold/15 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-luxury-gold uppercase border border-luxury-gold/30">
-            PRO SUITE
+          <span class="font-serif text-base font-semibold tracking-wide text-slate-900 transition-colors dark:text-white sm:text-lg">
+            AURA DIRECT
+          </span>
+          <span class="rounded-full bg-luxury-gold/10 px-2 py-0.5 text-[9px] font-semibold tracking-widestLuxury text-luxury-gold uppercase border border-luxury-gold/30">
+            PRO
           </span>
         </div>
-        <p class="text-xs text-luxury-stone">Luxury Villa Direct Booking & iCal Engine</p>
+        <p class="text-[11px] font-light text-slate-500 dark:text-luxury-muted">Luxury Direct Villa Booking Engine</p>
       </div>
-    </div>
+    </a>
 
-    <!-- Navigation / Badge Studio -->
-    <div class="flex items-center gap-3">
-      <div class="hidden items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/30 px-3 py-1 text-xs font-medium text-emerald-400 md:flex">
-        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Zero OTA Commission (Save 20%)
+    <!-- Action Bar: Theme Toggle & WhatsApp CTA -->
+    <div class="flex items-center gap-2.5 sm:gap-3.5">
+      <!-- Zero OTA Badge (Desktop) -->
+      <div class="hidden items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 transition-colors dark:border-emerald-500/30 dark:bg-emerald-950/30 dark:text-emerald-400 md:flex">
+        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Zero OTA Commission (Save 20%)</span>
       </div>
 
+      <!-- Theme Switcher (Light / Dark) -->
+      <button
+        type="button"
+        id="theme-toggle-btn"
+        aria-label="Ganti Tema"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-luxury-lightBorder bg-luxury-lightCard text-slate-600 transition hover:border-luxury-gold hover:text-luxury-gold dark:border-luxury-darkBorder dark:bg-luxury-darkCard dark:text-slate-300 dark:hover:text-luxury-gold active:scale-95"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="icon-sun" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="icon-moon" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <!-- Consult WhatsApp CTA -->
       <a
         href="https://wa.me/6282322370126?text=Halo%20Veridion%20Studio%2C%20saya%20tertarik%20dengan%20sistem%20direct%20booking%20villa%20Aura%20Direct."
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-luxury-gold to-amber-500 px-4 py-2 text-xs font-semibold text-luxury-dark shadow-md shadow-amber-900/30 transition hover:brightness-110 active:scale-95"
+        class="inline-flex items-center gap-2 rounded-lg border border-luxury-gold/60 bg-gradient-to-r from-luxury-gold to-amber-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:brightness-105 active:scale-95 dark:text-luxury-dark dark:font-bold"
       >
-        <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+        <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
           <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.149.929 3.182 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.942-.708-1.797 0-.855.449-1.277.608-1.448.16-.171.348-.214.464-.214.116 0 .232.001.333.006.107.005.25-.041.391.298.145.348.493 1.203.536 1.29.043.087.072.189.014.305-.058.116-.087.188-.174.29-.087.102-.183.228-.261.306-.087.087-.178.182-.077.355.101.174.45 1.05 1.29 1.448.145.069.261.087.362.087.217 0 .435-.116.522-.261.116-.188.464-.783.58-.957.116-.174.232-.145.391-.087.16.058 1.015.479 1.189.566.174.087.29.13.333.203.044.072.044.42-.1 1.025z"/>
         </svg>
-        <span>Konsultasi Studio</span>
+        <span class="hidden sm:inline">Konsultasi Studio</span>
+        <span class="sm:hidden">Kontak</span>
       </a>
     </div>
   </div>
 </header>
 
+<script>
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  const iconSun = document.getElementById('icon-sun');
+  const iconMoon = document.getElementById('icon-moon');
+
+  function updateIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      iconSun?.classList.remove('hidden');
+      iconMoon?.classList.add('hidden');
+    } else {
+      iconSun?.classList.add('hidden');
+      iconMoon?.classList.remove('hidden');
+    }
+  }
+
+  updateIcons();
+
+  toggleBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcons();
+  });
+</script>

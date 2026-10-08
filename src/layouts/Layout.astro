@@ -11,7 +11,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="id" class="scroll-smooth bg-luxury-dark text-slate-100 antialiased selection:bg-luxury-gold selection:text-luxury-dark">
+<html lang="id" class="dark scroll-smooth antialiased selection:bg-luxury-gold selection:text-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -45,6 +45,25 @@ const {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80" />
 
+    <script is:inline>
+      // Inisialisasi tema instan sebelum render untuk menghindari flash of unstyled theme
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          return 'light';
+        }
+        return 'dark';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
     <style is:global>
       @tailwind base;
       @tailwind components;
@@ -52,23 +71,32 @@ const {
 
       /* Custom scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
       }
-      ::-webkit-scrollbar-track {
-        background: #0b0f12;
+      .dark ::-webkit-scrollbar-track {
+        background: #0a0d10;
       }
-      ::-webkit-scrollbar-thumb {
-        background: #283545;
-        border-radius: 4px;
+      .dark ::-webkit-scrollbar-thumb {
+        background: #232d3b;
+        border-radius: 9999px;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #d4af37;
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #c5a059;
+      }
+      html:not(.dark) ::-webkit-scrollbar-track {
+        background: #fbfbfa;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb {
+        background: #d4d2cb;
+        border-radius: 9999px;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+        background: #c5a059;
       }
     </style>
   </head>
-  <body class="min-h-screen bg-luxury-dark font-sans text-slate-200">
+  <body class="min-h-screen bg-luxury-light text-slate-800 transition-colors duration-300 dark:bg-luxury-dark dark:text-slate-200">
     <slot />
   </body>
 </html>
-
